@@ -7,9 +7,17 @@ const breakTimeMin = 0.1 * 60 * 1000;
 
 export default function App() {
   const [timerCount,setTimerCount] = useState<number>(focusTimeMin);
+  const [timerInterval, setTimerInterval] = useState<NodeJS.Timer | null>(null);
 
   const startTime = () => {
-    setInterval(() => setTimerCount(prev => prev -1000),1000);
+    const id = setInterval(() => setTimerCount(prev => prev -1000),1000);
+    setTimerInterval(id);
+  }
+
+  const stopTime = () => {
+    if (timerInterval != null){
+      clearInterval(timerInterval);
+    }
   }
 
   return (
@@ -17,6 +25,9 @@ export default function App() {
       <Text>{timerCount}</Text> 
       <TouchableOpacity style={styles.button} onPress={startTime}>
         <Text style={styles.letters}>Start</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={stopTime}>
+        <Text style={styles.letters}>Stop</Text>
       </TouchableOpacity>
       <StatusBar style='auto' />
     </View>
@@ -31,6 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
+    margin: 15,
     height: 75,
     width: 100,
     borderRadius: 20,
