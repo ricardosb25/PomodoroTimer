@@ -2,16 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 
-const FocusTimeMin = 0.2 * 60 * 1000;
-const BreakTimeMin = 0.1 * 60 * 1000;
+const focusTimeMin = 0.2 * 60 * 1000;
+const breakTimeMin = 0.1 * 60 * 1000;
 
 export default function App() {
-  const [timerCount,setTimerCount] = useState<number>(12);
+  const [timerCount,setTimerCount] = useState<number>(focusTimeMin);
+
+  const startTime = () => {
+    setInterval(() => setTimerCount(prev => prev -1000),1000);
+  }
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.letters}>Botão</Text>
+    <View style={styles.container}> 
+      <Text>{timerCount}</Text> 
+      <TouchableOpacity style={styles.button} onPress={startTime}>
+        <Text style={styles.letters}>Start</Text>
       </TouchableOpacity>
+      <StatusBar style='auto' />
     </View>
   );
 }
