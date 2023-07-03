@@ -20,9 +20,11 @@ export default function App() {
     }
   }
 
+  const timerDate = new Date(timerCount);
+
   return (
     <View style={styles.container}> 
-      <Text>{timerCount}</Text> 
+      <Text>{timerDate.getMinutes().toString().padStart(2, "0")}:{timerDate.getSeconds().toString().padStart(2, "0")}</Text> 
       <TouchableOpacity style={styles.button} onPress={startTime}>
         <Text style={styles.letters}>Start</Text>
       </TouchableOpacity>
