@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
+import { CountDown } from './CountDown';
 
 const focusTimeMin = 0.2 * 60 * 1000;
 const breakTimeMin = 0.1 * 60 * 1000;
@@ -8,8 +9,10 @@ const breakTimeMin = 0.1 * 60 * 1000;
 export default function App() {
   const [timerCount,setTimerCount] = useState<number>(focusTimeMin);
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timer | null>(null);
+  const [timeRun, setTimeRun] = useState<boolean>(false);
 
   const startTime = () => {
+    setTimeRun(true);
     const id = setInterval(() => setTimerCount(prev => prev -1000),1000);
     setTimerInterval(id);
   }
@@ -18,18 +21,14 @@ export default function App() {
     if (timerInterval != null){
       clearInterval(timerInterval);
     }
+    setTimeRun(false);
   }
-
-  const timerDate = new Date(timerCount);
 
   return (
     <View style={styles.container}> 
-      <Text>{timerDate.getMinutes().toString().padStart(2, "0")}:{timerDate.getSeconds().toString().padStart(2, "0")}</Text> 
-      <TouchableOpacity style={styles.button} onPress={startTime}>
-        <Text style={styles.letters}>Start</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={stopTime}>
-        <Text style={styles.letters}>Stop</Text>
+      <CountDown timerDate={new Date(timerCount)}/>
+      <TouchableOpacity style={styles.button} onPress={timeRun ? stopTime : startTime}>
+        <Text style={styles.letters}>{timeRun ? 'Stop Timer' : 'Start Timer'}</Text>
       </TouchableOpacity>
       <StatusBar style='auto' />
     </View>
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
   button: {
     margin: 15,
     height: 75,
-    width: 100,
+    width: 125,
     borderRadius: 20,
     backgroundColor: 'red',
     alignItems: 'center',
