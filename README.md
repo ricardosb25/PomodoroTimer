@@ -1,3 +1,3 @@
 # ReactNative
-O repositório é de um app com um timer de pomodoro (auto-explicativo)
-//ainda não terminado 
+The repository is for app pomodoro timer (self-explanatory)
+not yet finished 
