@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 import { CountDown } from './CountDown';
 import { TimerButton } from './TimerButton';
+import { ControlButton } from './ControlButton';
 
-const focusTimeMin = 0.2 * 60 * 1000;
-const breakTimeMin = 0.1 * 60 * 1000;
+let minutes = 1;
+const focusTimeMin = minutes * 60 * 1000;
+const breakTimeMin = minutes * 60 * 1000;
 
 export default function App() {
   const [timerCount,setTimerCount] = useState<number>(focusTimeMin);
@@ -28,6 +30,7 @@ export default function App() {
   return (
     <View style={styles.container}> 
       <CountDown timerDate={new Date(timerCount)}/>
+      <ControlButton minutes={minutes}/>
       <TimerButton timeRun={timeRun} startTime={startTime} stopTime={stopTime}/>
       <StatusBar style='auto' />
     </View>
