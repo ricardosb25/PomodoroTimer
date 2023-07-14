@@ -1,24 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 type Props = {
-    minutes:number;
+    handlePress: () => void;
 }
 
-export const ControlButton: React.FC<Props>= ({ minutes }) =>{
-    const plus = () => {
-        minutes = minutes + 1;
-    }
-    const minus = () => {
-        minutes = minutes - 1;
-    }
+export const ControlButton: React.FC<Props> = ( { handlePress } ) =>{
     return(
         <View>
-            <TouchableOpacity style={styles.buttonPlus} onPress={plus}>
+            <TouchableOpacity style={styles.buttonPlus} onPress={handlePress}>
                 <Text style={styles.plus}>></Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonMinus} onPress={minus}>
-                <Text style={styles.minus}>></Text>
             </TouchableOpacity>
         </View>
     )
