@@ -13,6 +13,11 @@ export default function App() {
   const [timerCount,setTimerCount] = useState<number>(focusTimeMin);
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timer | null>(null);
   const [timeRun, setTimeRun] = useState<boolean>(false);
+  const [minutes, setMinutes] = useState(1);
+  
+  const handlePress = () => {
+    setMinutes(minutes + 1);
+  };
 
   const startTime = () => {
     setTimeRun(true);
@@ -30,7 +35,7 @@ export default function App() {
   return (
     <View style={styles.container}> 
       <CountDown timerDate={new Date(timerCount)}/>
-      <ControlButton minutes={minutes}/>
+      <ControlButton handlePress={handlePress}/>
       <TimerButton timeRun={timeRun} startTime={startTime} stopTime={stopTime}/>
       <StatusBar style='auto' />
     </View>
