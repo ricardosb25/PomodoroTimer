@@ -18,8 +18,9 @@ export const CountDown: React.FC<Props> = ( { timerDate } ) => {
 
 const styles = StyleSheet.create({
     numbers:{
-    fontSize: 20,
-    fontWeight: "700",
-    color: 'white',
+        top: 450,
+        fontSize: 30,
+        fontWeight: "700",
+        color: 'white',
     }
 })
