@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { useState } from 'react';
 import { CountDown } from './CountDown';
 import { TimerButton } from './TimerButton';
@@ -33,7 +33,9 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
+      <Text>Pomodoro Timer</Text>
+      <Text>Time to Focus</Text>
       <CountDown timerDate={new Date(timerCount)}/>
       <ControlButton handlePress={handlePress}/>
       <TimerButton timeRun={timeRun} startTime={startTime} stopTime={stopTime}/>
@@ -44,21 +46,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'grey',
+    backgroundColor: '#b00',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  button: {
-    margin: 15,
-    height: 75,
-    width: 125,
-    borderRadius: 20,
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  letters: {
-    fontSize: 20,
-    color: 'white',
   },
 });
