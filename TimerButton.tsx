@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 type Props ={
     timeRun: boolean;
@@ -9,25 +10,25 @@ type Props ={
 
 export const TimerButton: React.FC<Props> = ( { timeRun, stopTime, startTime } ) =>{
     return(
-        <TouchableOpacity style={styles.button} onPress={timeRun ? stopTime : startTime}>
-            <Text style={styles.letters}>{timeRun ? 'Stop Timer' : 'Start Timer'}</Text>
+        <TouchableOpacity style={styles.circle} onPress={timeRun ? stopTime : startTime}>
+            <FontAwesome style={styles.icon} name={timeRun ? 'pause' : 'play'} size={125} color={'antiquewhite'}/>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    button: {
-        margin: 15,
-        height: 75,
-        width: 125,
-        borderRadius: 20,
-        backgroundColor: 'red',
-        alignItems: 'center',
-        justifyContent: 'center',
+      icon: {
+        alignSelf: 'center',
       },
-      letters: {
-        fontSize: 20,
-        color: 'white',
+      circle: {
+        borderWidth: 5,
+        width: 250, 
+        height: 250,
+        borderRadius: 125,
+        justifyContent: 'center',
+        borderColor: 'antiquewhite',
+        marginVertical: 50,
+        bottom: 40,
       },
 })
 
